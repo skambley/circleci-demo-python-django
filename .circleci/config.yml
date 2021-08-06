@@ -11,4 +11,11 @@ jobs:
       - image: cimg/python:3.9.6
     steps:
       - checkout
-      - run: python --version
+      - run:
+          name: Install dependencies
+          command: |
+            sudo pip install pipenv
+            pipenv install
+      - run:
+          name: Run tests
+          command: pip env run python manage.py test
